@@ -31,6 +31,12 @@ TALON provides a single multi-agent control plane so operations, security, and e
 ## Flow diagram
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{
+  "primaryColor":"#0b1220","primaryTextColor":"#ffffff","primaryBorderColor":"#93c5fd",
+  "secondaryColor":"#111827","tertiaryColor":"#0b1220","lineColor":"#93c5fd",
+  "clusterBkg":"#0b1220","clusterBorder":"#93c5fd","edgeLabelBackground":"#0b1220",
+  "fontSize":"14px","fontFamily":"Inter, Segoe UI, Arial"
+}}}%%
 flowchart LR
   user[Operator or System] -->|Job| PL[Planner Agent]
 
@@ -44,8 +50,14 @@ flowchart LR
   end
 
   CAM[PTZ Cameras] -->|Frames / Frame IDs| VI
-  IF -->|Plan artifact| ST[(Artifact Store)]
+  ST[(Artifact Store)]
+  IF -->|Plan artifact| ST
   NO -->|Status & Approvals| People
+
+  %% High-contrast defaults
+  classDef default fill:#0b1220,stroke:#93c5fd,color:#ffffff,stroke-width:1px;
+  classDef store fill:#0b1220,stroke:#f59e0b,color:#ffffff,stroke-width:1.2px;
+  class ST store;
 ```
 
 ---
@@ -53,6 +65,12 @@ flowchart LR
 ## Reference architecture
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{
+  "primaryColor":"#0b1220","primaryTextColor":"#ffffff","primaryBorderColor":"#93c5fd",
+  "secondaryColor":"#111827","tertiaryColor":"#0b1220","lineColor":"#93c5fd",
+  "clusterBkg":"#0b1220","clusterBorder":"#93c5fd","edgeLabelBackground":"#0b1220",
+  "fontSize":"14px","fontFamily":"Inter, Segoe UI, Arial"
+}}}%%
 graph LR
   subgraph Edge["Factory Edge"]
     CAM[PTZ Cameras]
@@ -90,6 +108,11 @@ graph LR
   PR --> REG
   GIT --> Cluster
   OP -->|Approvals & Status| Users
+
+  %% High-contrast defaults
+  classDef default fill:#0b1220,stroke:#93c5fd,color:#ffffff,stroke-width:1px;
+  classDef store fill:#0b1220,stroke:#f59e0b,color:#ffffff,stroke-width:1.2px;
+  class OBJ,REG,Q store;
 ```
 
 ---

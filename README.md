@@ -1,6 +1,6 @@
 <div align="center" style="display:flex;justify-content:center;align-items:flex-end;gap:0;margin:0;padding:0;line-height:0;">
-  <img src="T.png" alt="T" style="height:16vw;display:block;margin:0;padding:0;">
-  <img src="ALON.png" alt="ALON" style="height:12vw;display:block;margin:0;padding:0;">
+  <img src="T.png" alt="T" style="height:15vw;display:block;margin:0;padding:0;">
+  <img src="ALON.png" alt="ALON" style="height:13vw;display:block;margin:0;padding:0;">
 </div>
 
 ## Tactical Agentic Layer for Orchestrated eNvironments

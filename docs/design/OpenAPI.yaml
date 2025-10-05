@@ -2,3 +2,294 @@ openapi: 3.0.3
 info:
   title: TALON API
   version: 0.1.0
+  description: |
+    TALON is the agentic control-plane for Blue Eagle Robotics. It exposes endpoints to submit
+    perception and infrastructure jobs. These endpoints return structured responses that include
+    derived values, confidence metrics, policy evaluation and provenance identifiers.
+
+servers:
+  - url: https://api.rain-blueeagle.com
+    description: Production server
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /job/perception:
+    post:
+      summary: Submit a perception job for analysis
+      description: |
+        Accepts a perception job containing an image identifier and region-of-interest. Returns
+        a gauge reading with associated confidence, latency and policy evaluation, along with
+        a unique job identifier for provenance.
+      tags:
+        - Perception
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerceptionRequest'
+            examples:
+              sample:
+                summary: Example request
+                value:
+                  image_id: frame-001
+                  roi: [0, 0, 100, 100]
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerceptionResponse'
+              examples:
+                success:
+                  summary: Example response
+                  value:
+                    image_id: frame-001
+                    roi: [0, 0, 100, 100]
+                    value: "73.1 psi"
+                    confidence: 0.956
+                    latency_ms: 620
+                    model_version: gaugelens-1.2.3
+                    policy:
+                      status: pass
+                      checks:
+                        min_confidence: 0.92
+                        max_latency_ms: 2000
+                    job_id: "123e4567-e89b-12d3-a456-426614174000"
+                    time: 1733340000.0
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /job/infra:
+    post:
+      summary: Submit an infrastructure change request
+      description: |
+        Accepts an infrastructure change request object and returns a plan artifact reference along
+        with policy evaluation and provenance. Clients should use the returned plan identifier to
+        fetch or apply plans through the appropriate workflow.
+      tags:
+        - Infrastructure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfraRequest'
+            examples:
+              sample:
+                summary: Example request
+                value:
+                  change_request:
+                    add:
+                      - rg
+                      - vnet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfraResponse'
+              examples:
+                success:
+                  summary: Example response
+                  value:
+                    plan_id: plan-2048
+                    summary:
+                      add:
+                        - rg
+                        - vnet
+                      change: []
+                      destroy: []
+                    artifact_ref: artifacts/plan-2048.bin
+                    policy:
+                      status: pass
+                      violations: []
+                    job_id: "123e4567-e89b-12d3-a456-426614174001"
+                    time: 1733340000.0
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    PerceptionRequest:
+      type: object
+      properties:
+        image_id:
+          type: string
+          description: Identifier of the image to analyze
+        roi:
+          type: array
+          items:
+            type: integer
+          description: |
+            Region of interest in the image defined as [x1, y1, x2, y2]. If omitted,
+            defaults to the entire frame.
+          minItems: 4
+          maxItems: 4
+      required:
+        - image_id
+      additionalProperties: false
+
+    PerceptionResponse:
+      type: object
+      properties:
+        image_id:
+          type: string
+        roi:
+          type: array
+          items:
+            type: integer
+        value:
+          type: string
+          description: Measured value (e.g., gauge reading)
+        confidence:
+          type: number
+          format: double
+          description: Model confidence in the measured value
+        latency_ms:
+          type: integer
+          description: Inference latency in milliseconds
+        model_version:
+          type: string
+          description: Version of the model used for inference
+        policy:
+          $ref: '#/components/schemas/Policy'
+        job_id:
+          type: string
+          format: uuid
+          description: Unique identifier for this job
+        time:
+          type: number
+          format: double
+          description: UNIX timestamp of the job completion
+      required:
+        - image_id
+        - roi
+        - value
+        - confidence
+        - latency_ms
+        - model_version
+        - policy
+        - job_id
+        - time
+      additionalProperties: false
+
+    InfraRequest:
+      type: object
+      properties:
+        change_request:
+          type: object
+          description: Proposed changes to the infrastructure
+      required:
+        - change_request
+      additionalProperties: false
+
+    InfraResponse:
+      type: object
+      properties:
+        plan_id:
+          type: string
+          description: Identifier for the generated plan artifact
+        summary:
+          $ref: '#/components/schemas/Summary'
+        artifact_ref:
+          type: string
+          description: Storage location of the plan artifact
+        policy:
+          $ref: '#/components/schemas/Policy'
+        job_id:
+          type: string
+          format: uuid
+          description: Unique identifier for this job
+        time:
+          type: number
+          format: double
+          description: UNIX timestamp of the plan creation
+      required:
+        - plan_id
+        - summary
+        - artifact_ref
+        - policy
+        - job_id
+        - time
+      additionalProperties: false
+
+    Summary:
+      type: object
+      properties:
+        add:
+          type: array
+          items:
+            type: string
+          description: Names of resources to be created
+        change:
+          type: array
+          items:
+            type: string
+          description: Names of resources to be modified
+        destroy:
+          type: array
+          items:
+            type: string
+          description: Names of resources to be destroyed
+      additionalProperties: false
+
+    Policy:
+      type: object
+      description: Results of policy evaluation for the job
+      properties:
+        status:
+          type: string
+          description: Overall status of the policy evaluation
+          enum:
+            - pass
+            - review
+            - fail
+        checks:
+          type: object
+          description: Key-value pairs representing individual check thresholds
+          additionalProperties: true
+        violations:
+          type: array
+          items:
+            type: string
+          description: List of policy violations detected
+      additionalProperties: false
+
+    ErrorResponse:
+      type: object
+      description: Generic error response
+      properties:
+        error:
+          type: string
+          description: Short error code
+        message:
+          type: string
+          description: Human‑readable error message
+      required:
+        - error
+        - message
+      additionalProperties: false

@@ -1,4 +1,5 @@
-# TALON • Tactical Agentic Layer for Orchestrated eNvironments
+# TALON 
+## Tactical Agentic Layer for Orchestrated eNvironments
 
 **Vendor:** Reliable AI Network, Inc. (RAIN)  
 **Client:** Blue Eagle Robotics (BER)

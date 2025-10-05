@@ -68,12 +68,13 @@ After deployment, the pipeline monitors the health of the system.  Automated tes
 flowchart LR
     S[Developer Commit] --> CI[Build & Test]
     CI --> SG[Sign Artifacts]
-    SG --> PL[Plan (Terraform/Policy)]
+    SG --> PL["Plan (Terraform/Policy)"]
     PL --> PC[Policy Checks]
     PC --> AP[Approval Gate]
     AP --> CD[Apply Changes]
     CD --> MON[Monitor & Rollback]
     MON --> S
+
 ```
 
 ## User Stories

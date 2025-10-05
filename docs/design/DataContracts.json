@@ -1,4 +1,152 @@
 {
-  "perception_record": {},
-  "infra_record": {}
+  "perception_record": {
+    "type": "object",
+    "description": "Record capturing the output of a perception job.",
+    "properties": {
+      "job_id": {
+        "type": "string",
+        "description": "Unique identifier for the job."
+      },
+      "image_id": {
+        "type": "string",
+        "description": "Identifier of the input image or frame."
+      },
+      "roi": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "description": "Region of interest coordinates represented as an array of integers (e.g. [x, y, width, height])."
+      },
+      "value": {
+        "type": "string",
+        "description": "Gauge reading captured by the perception service (including units, e.g. '73.1 psi')."
+      },
+      "confidence": {
+        "type": "number",
+        "description": "Confidence score for the inference on a scale from 0 to 1."
+      },
+      "latency_ms": {
+        "type": "integer",
+        "description": "Latency of the inference in milliseconds."
+      },
+      "model_version": {
+        "type": "string",
+        "description": "Version of the model used for the inference."
+      },
+      "policy": {
+        "type": "object",
+        "description": "Policy evaluation result for the perception job.",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Overall policy decision (e.g. 'pass', 'review', 'fail')."
+          },
+          "checks": {
+            "type": "object",
+            "description": "Thresholds or criteria used during policy evaluation."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "time": {
+        "type": "number",
+        "description": "Unix epoch timestamp indicating when the record was created."
+      }
+    },
+    "required": [
+      "job_id",
+      "image_id",
+      "value",
+      "confidence",
+      "latency_ms",
+      "model_version",
+      "policy",
+      "time"
+    ]
+  },
+  "infra_record": {
+    "type": "object",
+    "description": "Record capturing the output of an infrastructure plan job.",
+    "properties": {
+      "job_id": {
+        "type": "string",
+        "description": "Unique identifier for the job."
+      },
+      "plan_id": {
+        "type": "string",
+        "description": "Unique identifier for the infrastructure plan."
+      },
+      "summary": {
+        "type": "object",
+        "description": "Summary of the planned infrastructure changes.",
+        "properties": {
+          "add": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of resources to be added."
+          },
+          "change": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of resources to be modified."
+          },
+          "destroy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of resources to be destroyed."
+          }
+        },
+        "required": [
+          "add",
+          "change",
+          "destroy"
+        ]
+      },
+      "artifact_ref": {
+        "type": "string",
+        "description": "Reference to the stored plan artifact (e.g. a path in object storage)."
+      },
+      "policy": {
+        "type": "object",
+        "description": "Policy evaluation result for the infra plan.",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Overall policy decision (e.g. 'pass', 'fail')."
+          },
+          "violations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of policy violations, if any."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "time": {
+        "type": "number",
+        "description": "Unix epoch timestamp indicating when the record was created."
+      }
+    },
+    "required": [
+      "job_id",
+      "plan_id",
+      "summary",
+      "artifact_ref",
+      "policy",
+      "time"
+    ]
+  }
 }

@@ -6,7 +6,7 @@
 ## Tactical Agentic Layer for Orchestrated eNvironments
 
 **Vendor:** Reliable AI Network, Inc. (RAIN)  
-**Client:** Blue Eagle Robotics (BER)
+**Client:** Blue Eagle Robotics, Inc. (BER)
 
 > **One agentic control plane** for factory operations. TALON unifies camera gauge checks and policy-gated infrastructure changes under a single orchestrator with end-to-end provenance.
 

@@ -14,7 +14,7 @@ TALON (Tactical Agentic Layer for Orchestrated eNvironments) is RAIN’s unified
 
 ## 2. High‑Level Architecture Overview
 
-A typical high‑level design document contains an introduction, architecture overview, technology choices, data and integration architecture, security measures, deployment approach and risk mitigation strategies【662282491649061†L104-L128】.  TALON follows these principles by structuring its architecture around clear components and interfaces.  
+A typical high‑level design document contains an introduction, architecture overview, technology choices, data and integration architecture, security measures, deployment approach and risk mitigation strategies.  TALON follows these principles by structuring its architecture around clear components and interfaces.  
 
 TALON is composed of a **control plane** and several **specialist agents**:
 
@@ -83,7 +83,7 @@ TALON leverages a combination of open‑source and enterprise tools:
 
 ## 3. Security Architecture
 
-Security is one of the most important aspects of any architecture; good security provides confidentiality, integrity and availability assurances【648799904540875†L54-L58】.  TALON adopts a defence‑in‑depth approach across identities, networks, data, and application layers.
+Security is one of the most important aspects of any architecture; good security provides confidentiality, integrity and availability assurances.  TALON adopts a defence‑in‑depth approach across identities, networks, data, and application layers.
 
 ### 3.1 Identity and Access
 
@@ -116,13 +116,13 @@ Security is one of the most important aspects of any architecture; good security
 
 ## 5. Quality Attributes and Success Metrics
 
-High‑level design documents often include sections on non‑functional requirements and risks【662282491649061†L104-L128】.  TALON defines the following key quality attributes and measurable success criteria to evaluate effectiveness and return on investment:
+High‑level design documents often include sections on non‑functional requirements and risks.  TALON defines the following key quality attributes and measurable success criteria to evaluate effectiveness and return on investment:
 
 * **Accuracy and Latency** – For perception jobs, gauge reading accuracy must meet ≥95 % on the pilot dataset and maintain a median latency ≤2 s (95th percentile ≤5 s).  These thresholds ensure operators can make real‑time decisions.
 * **Reliability** – System availability targets 99.9 % uptime for the control plane and agents.  Automated failover and redundancy within the Kubernetes cluster support this target.
-* **Security Incident Reduction** – Integration of image signing, SBOM attestation and policy gating aims to reduce security incidents.  Cloud architecture success metrics include security incident reduction as a key performance indicator【728567826932342†L108-L118】.
-* **Cost Efficiency** – Adopting IaC and automated policies reduces manual effort.  Cloud architecture ROI metrics emphasise infrastructure cost optimisation, development team productivity and time‑to‑market acceleration【728567826932342†L108-L118】.
-* **Team Productivity** – By unifying perception and infra workflows, TALON should decrease context switching and improve throughput of change requests.  Observations such as 65 % faster release cycles when using integrated platforms support this expectation【728567826932342†L255-L260】.
+* **Security Incident Reduction** – Integration of image signing, SBOM attestation and policy gating aims to reduce security incidents.  Cloud architecture success metrics include security incident reduction as a key performance indicator.
+* **Cost Efficiency** – Adopting IaC and automated policies reduces manual effort.  Cloud architecture ROI metrics emphasise infrastructure cost optimisation, development team productivity and time‑to‑market acceleration.
+* **Team Productivity** – By unifying perception and infra workflows, TALON should decrease context switching and improve throughput of change requests.  Observations such as 65 % faster release cycles when using integrated platforms support this expectation.
 * **Compliance and Auditability** – 100 % of jobs must have complete provenance records.  Auditors should be able to verify artefacts against the transparency log with minimal effort.
 
 ## 6. Risks and Mitigation
@@ -143,4 +143,4 @@ High‑level design documents often include sections on non‑functional require
 
 ## 8. Conclusion
 
-This High‑Level Design outlines how TALON will enable Blue Eagle Robotics to unify vision and infrastructure automation under a single, secure control plane.  By adhering to recognised architecture documentation sections and emphasising security measures【662282491649061†L104-L128】, TALON provides a robust foundation for achieving business goals.  The defined success metrics align with modern cloud architecture evaluation criteria【728567826932342†L108-L118】 and will help BER assess the platform’s effectiveness over time.  With careful implementation and ongoing governance, TALON can deliver reliable, auditable automation that scales with the organisation’s needs.
+This High‑Level Design outlines how TALON will enable Blue Eagle Robotics to unify vision and infrastructure automation under a single, secure control plane.  By adhering to recognised architecture documentation sections and emphasising security measures, TALON provides a robust foundation for achieving business goals.  The defined success metrics align with modern cloud architecture evaluation criteria and will help BER assess the platform’s effectiveness over time.  With careful implementation and ongoing governance, TALON can deliver reliable, auditable automation that scales with the organisation’s needs.

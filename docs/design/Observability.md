@@ -171,6 +171,3 @@ Observability is not a one‑off effort. It requires ongoing refinement:
 - Share observability metrics and insights with stakeholders to drive data‑driven decisions.  
 - Evaluate new tooling (e.g., telemetry libraries, anomaly detection) and update the observability stack as needed.
 
----
-
-This Observability Plan provides a baseline for measuring, monitoring and improving the TALON platform. By defining clear indicators, objectives and visualisation requirements, it enables teams to detect issues early, respond quickly and iterate on reliability and performance over time.

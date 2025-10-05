@@ -32,7 +32,7 @@ These agents are delivered as containerised microservices running on a hardened 
 The logical view describes major components and their interactions.  TALON’s control plane routes jobs through a series of agents to produce outputs and provenance.  The diagram below depicts the main flows:
 
 ```mermaid
-flowchart LR
+flowchart TD
   subgraph ControlPlane["TALON Control Plane"]
     P[Planner] --> V[Vision Agent]
     P --> I[Infrastructure Agent]

@@ -42,7 +42,7 @@ TALON provides a single multi-agent control plane so operations, security, and e
   "clusterBkg":"#0b1220","clusterBorder":"#93c5fd","edgeLabelBackground":"#0b1220",
   "fontSize":"14px","fontFamily":"Inter, Segoe UI, Arial"
 }}}%%
-flowchart LR
+flowchart TB
   user[Operator or System] -->|Job| PL[Planner Agent]
 
   subgraph TALON["TALON Control Plane"]

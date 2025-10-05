@@ -1,4 +1,7 @@
-# TALON 
+<p align="center" style="margin:0;padding:0;">
+  <img src="T.png"    alt="T"     style="display:inline-block;max-width:100%;height:auto;width:22%;">
+  <img src="ALON.png" alt="ALON"  style="display:inline-block;max-width:100%;height:auto;width:78%;">
+</p>
 ## Tactical Agentic Layer for Orchestrated eNvironments
 
 **Vendor:** Reliable AI Network, Inc. (RAIN)  

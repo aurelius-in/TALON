@@ -1,7 +1,7 @@
-<p align="center" style="margin:0;padding:0;">
-  <img src="T.png"    alt="T"     style="display:inline-block;max-width:100%;height:auto;width:22%;">
-  <img src="ALON.png" alt="ALON"  style="display:inline-block;max-width:100%;height:auto;width:78%;">
-</p>
+<div align="center" style="display:flex;justify-content:center;align-items:flex-end;gap:0;margin:0;padding:0;line-height:0;">
+  <img src="T.png" alt="T" style="height:16vw;display:block;margin:0;padding:0;">
+  <img src="ALON.png" alt="ALON" style="height:9.6vw;display:block;margin:0;padding:0;">
+</div>
 ## Tactical Agentic Layer for Orchestrated eNvironments
 
 **Vendor:** Reliable AI Network, Inc. (RAIN)  

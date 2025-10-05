@@ -65,7 +65,7 @@ After deployment, the pipeline monitors the health of the system.  Automated tes
 ## CI/CD Pipeline Diagram
 
 ```mermaid
-flowchart LR
+flowchart TB
     S[Developer Commit] --> CI[Build & Test]
     CI --> SG[Sign Artifacts]
     SG --> PL["Plan (Terraform/Policy)"]

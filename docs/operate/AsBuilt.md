@@ -16,35 +16,35 @@ This As‑Built captures the **final deployed architecture**, **versions**, and 
 
 ---
 
-## 3) High‑Level Architecture (as built)
+## High‑Level Architecture
 ```mermaid
 flowchart LR
-  subgraph Client
-    UI[Web Console]
-    CLI[CLI]
+  subgraph Client["Client"]
+    UI["Web Console"]
+    CLI["CLI"]
   end
 
-  subgraph ControlPlane
-    API[TALON API<br/>(OpenAPI 0.1.0)]
-    POL[Policy Engine<br/>(OPA/Rego)]
-    Q[Job Queue]
+  subgraph ControlPlane["Control Plane"]
+    API["TALON API (OpenAPI 0.1.0)"]
+    POL["Policy Engine (OPA/Rego)"]
+    Q["Job Queue"]
   end
 
-  subgraph Perception
-    W1[Perception Workers]
-    CAM[PTZ Cameras]
-    STG[Object Storage]
+  subgraph Perception["Perception"]
+    W1["Perception Workers"]
+    CAM["PTZ Cameras"]
+    STG["Object Storage"]
   end
 
-  subgraph Infra
-    TF[Terraform Runner]
-    GIT[GitOps Controller]
+  subgraph Infra["Infrastructure"]
+    TF["Terraform Runner"]
+    GIT["GitOps Controller"]
   end
 
-  subgraph SecObs[Security & Observability]
-    SIG[Signing/Provenance]
-    LOG[Logs/Metrics/Traces]
-    DAS[Dashboards]
+  subgraph SecObs["Security and Observability"]
+    SIG["Signing and Provenance"]
+    LOG["Logs / Metrics / Traces"]
+    DAS["Dashboards"]
   end
 
   UI --> API

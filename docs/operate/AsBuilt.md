@@ -25,10 +25,8 @@ flowchart LR
   end
 
   subgraph ControlPlane
-    API[TALON API
-(OpenAPI 0.1.0)]
-    POL[Policy Engine
-(OPA/Rego)]
+    API[TALON API<br/>(OpenAPI 0.1.0)]
+    POL[Policy Engine<br/>(OPA/Rego)]
     Q[Job Queue]
   end
 
@@ -58,12 +56,12 @@ flowchart LR
   POL --> API
   API --> TF
   TF --> GIT
-  SIG -. verify .- API
-  SIG -. verify .- W1
-  LOG -. export .- API
-  LOG -. export .- W1
-  LOG -. export .- TF
-  DAS -. read .- LOG
+  SIG -.-> API
+  SIG -.-> W1
+  LOG -.-> API
+  LOG -.-> W1
+  LOG -.-> TF
+  DAS -.-> LOG
   CAM --> W1
 ```
 
@@ -190,7 +188,7 @@ flowchart LR
 
 ## 15) Acceptance & Handover
 - Pilot completed; acceptance certificate signed.  
-- All manifests and dashboards tagged `asbuilt‑2025‑09‑11`.  
+- All manifests and dashboards tagged `asbuilt‑2025‑09‑10`.  
 - Operators trained; admin guide delivered.
 
 ---
